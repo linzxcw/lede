@@ -7,14 +7,14 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: 威廉固件1.0
+name: 威廉固件2.3
 
 on:
   push:
     branches: 
       - master
-  # schedule:
-  #   - cron: 0 20 * * *
+    schedule:
+      - cron: 0 20 * * *
   release:
     types: [published]
 
