@@ -10,9 +10,9 @@
 name: 威廉固件1.0
 
 on:
-  #push:
-   # branches: 
-    #  - master
+  push:
+    branches: 
+      - master
   # schedule:
   #   - cron: 0 20 * * *
   release:
@@ -61,8 +61,8 @@ jobs:
       - name: Update feeds
         run: |
           sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          sed -i 's/#src-git kenzo https://github.com/V2RaySSR/openwrt-packages
-          sed -i 's/#src-git small https://github.com/V2RaySSR/small
+          sed -i 's/#src-git kenzo https://github.com/kenzok8/openwrt-packages
+          sed -i 's/#src-git small https://github.com/kenzok8/small
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -72,8 +72,48 @@ jobs:
           touch ./.config
           
           cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-app-frps=y
           CONFIG_PACKAGE_luci-app-frpc=y
-          CONFIG_PACKAGE_luci-app-docker=y
+          CONFIG_PACKAGE_luci-app-pptp-server=y
+          CONFIG_PACKAGE_luci-app-openclash=y
+          CONFIG_PACKAGE_luci-app-passwall=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Dns2socks=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_PDNSD=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
+          CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=y
+          CONFIG_DEFAULT_luci-app-ssr-plus=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
+          CONFIG_PACKAGE_gost=y
+          CONFIG_PACKAGE_luci-app-gost=y
+          CONFIG_PACKAGE_luci-i18n-gost-zh_cn=y
+          CONFIG_PACKAGE_luci-app-netdata=y
+          CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
+          CONFIG_PACKAGE_netdata=y
+          EOF
+          
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-theme-argon=y
+          CONFIG_PACKAGE_luci-theme-argon_new=y
+          CONFIG_PACKAGE_luci-theme-atmaterial_new=y
+          CONFIG_PACKAGE_luci-theme-bootstrap=y
+          CONFIG_PACKAGE_luci-theme-edge=y
+          CONFIG_PACKAGE_luci-theme-ifit=y
+          CONFIG_PACKAGE_luci-theme-material=y
+          CONFIG_PACKAGE_luci-theme-netgear=y
+          CONFIG_PACKAGE_luci-theme-opentomato=y
+          CONFIG_PACKAGE_luci-theme-opentomcat=y
+          CONFIG_PACKAGE_luci-theme-opentopd=m
           EOF
           
           #
