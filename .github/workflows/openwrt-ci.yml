@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: 威廉固件2.3
+name: 麒麟猪系统2.0
 
 on:
   push:
@@ -96,9 +96,12 @@ jobs:
           CONFIG_PACKAGE_gost=y
           CONFIG_PACKAGE_luci-app-gost=y
           CONFIG_PACKAGE_luci-i18n-gost-zh_cn=y
+          CONFIG_PACKAGE_netdata=y
           CONFIG_PACKAGE_luci-app-netdata=y
           CONFIG_PACKAGE_luci-i18n-netdata-zh-cn=y
-          CONFIG_PACKAGE_netdata=y
+          CONFIG_PACKAGE_smartdns=y
+          CONFIG_PACKAGE_luci-app-smartdns=y
+          CONFIG_PACKAGE_luci-i18n-smartdns-zh-cn=y
           EOF
           
           cat >> .config <<EOF
